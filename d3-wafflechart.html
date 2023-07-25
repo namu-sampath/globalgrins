@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Global Grins</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+    <div class="center-container">
+        <h1>Happiness is a gradient</h1>
+        <p>There is a big gap between the happiest countries in the world and the unhappiest countries in the world.</p>
+    </div>
+
+    <div id="my-svg-chart"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    
+    <!-- your JS code that uses d3 to manipulate data -->
+    <script>
+
+      // Step 4. load your data with d3.csv()
+      d3.csv("world_happiness_data.csv")
+          .then(data => {
+        // Check if the data is loaded
+          console.log(data);
+
+          // == your code happens below ==
+          
+          // making javascript code labeling each country with its corresponding happiness score
+
+          const countries = [
+          { country: 'Afghanistan', Happiness_score: 2.40 },
+          { country: 'Lebanon', Happiness_score: 2.96 },
+          { country: 'Zimbabwe', Happiness_score: 2.96 },
+          { country: 'Rwanda', Happiness_score: 3.27 },
+          { country: 'Botswana', Happiness_score: 3.47 },
+          { country: 'Lesotho', Happiness_score: 3.51 },
+          { country: 'Sierra Leone', Happiness_score: 3.57 },
+          { country: 'Tanzania', Happiness_score: 3.70 },
+          { country: 'Malawi', Happiness_score: 3.75},
+          { country: 'Zambia', Happiness_score: 3.76},
+          { country: 'India', Happiness_score: 3.78 },
+          { country: 'Togo', Happiness_score: 4.11 },
+          { country: 'Jordan', Happiness_score: 4.15 },
+          { country: 'Mauritania', Happiness_score: 4.15 },
+          { country: 'Yemen', Happiness_score: 4.20 },
+          { country: 'Ethiopia', Happiness_score: 4.24 },
+          { country: 'Chad', Happiness_score: 4.25 },
+          { country: 'Egypt', Happiness_score: 4.29 },
+          { country: 'Madagascar', Happiness_score: 4.34 },
+          { country: 'Sri Lanka', Happiness_score: 4.36 },
+          { country: 'Myanmar', Happiness_score: 4.39 },
+          { country: 'Kingdom of Eswatini', Happiness_score: 4.40 },
+          { country: 'Namibia', Happiness_score: 4.46 },
+          { country: 'Mali', Happiness_score: 4.48 },
+          { country: 'Palestinian Territories', Happiness_score: 4.48 },
+          { country: 'Pakistan', Happiness_score: 4.52},
+          { country: 'Tunisia', Happiness_score: 4.52},
+          { country: 'Kenya', Happiness_score: 4.54 },
+          { country: 'Nigeria', Happiness_score: 4.55 },
+          { country: 'Uganda', Happiness_score: 4.60 },
+          { country: 'Comoros', Happiness_score: 4.61 },
+          { country: 'Benin', Happiness_score: 4.62 },
+          { country: 'Cambodia', Happiness_score: 4.64 },
+          { country: 'Burkina Faso', Happiness_score: 4.67 },
+          { country: 'Turkey', Happiness_score: 4.74 },
+          { country: 'Ghana', Happiness_score: 4.87 },
+          { country: 'Iran', Happiness_score: 4.89},
+          { country: 'Guinea', Happiness_score: 4.89 },
+          { country: 'Venezuela', Happiness_score: 4.93 },
+          { country: 'Iraq', Happiness_score: 4.94 },
+          { country: 'Gabon', Happiness_score: 4.96 },
+          { country: 'Georgia', Happiness_score: 4.97 },
+          { country: 'Niger', Happiness_score: 5.00 },
+          { country: 'Senegal', Happiness_score: 5.05 },
+          { country: 'Cameroon', Happiness_score: 5.05 },
+          { country: 'Mozambique', Happiness_score: 5.05 },
+          { country: 'Morocco', Happiness_score: 5.06 },
+          { country: 'Congo', Happiness_score: 5.08 },
+          { country: 'Ukraine', Happiness_score: 5.08 },
+          { country: 'Liberia', Happiness_score: 5.12 },
+          { country: 'Algeria', Happiness_score: 5.12 },
+          { country: 'Laos', Happiness_score: 5.14 },
+          { country: 'Bangladesh', Happiness_score: 5.16 },
+          { country: 'Gambia', Happiness_score: 5.16 },
+          { country: 'Azerbaijan', Happiness_score: 5.17 },
+          { country: 'South Africa', Happiness_score: 5.19 },
+          { country: 'Albania', Happiness_score: 5.20 },
+          { country: 'North Macedonia', Happiness_score: 5.20 },
+          { country: 'Ivory Coast', Happiness_score: 5.24 },
+          { country: 'Indonesia', Happiness_score: 5.24 },
+          { country: 'Libya', Happiness_score: 5.33 },
+          { country: 'Bulgaria', Happiness_score: 5.37 },
+          { country: 'Nepal', Happiness_score: 5.38 },
+          { country: 'Tajikistan', Happiness_score: 5.38 },
+          { country: 'Armenia', Happiness_score: 5.40 },
+          { country: 'Hong Kong S.A.R. of China', Happiness_score: 5.43 },
+          { country: 'Russia', Happiness_score: 5.46 },
+          { country: 'North Cyprus', Happiness_score: 5.47 },
+          { country: 'Turkmenistan', Happiness_score: 5.47 },
+          { country: 'Vietnam', Happiness_score: 5.49 },
+          { country: 'Ecuador', Happiness_score: 5.53 },
+          { country: 'Montenegro', Happiness_score: 5.55 },
+          { country: 'Peru', Happiness_score: 5.56 },
+          { country: 'Paraguay', Happiness_score: 5.58 },
+          { country: 'China', Happiness_score: 5.59 },
+          { country: 'Bolivia', Happiness_score: 5.60 },
+          { country: 'Malaysia', Happiness_score: 5.71 },
+          { country: 'Dominican Republic', Happiness_score: 5.74 },
+          { country: 'Mongolia', Happiness_score: 5.76 },
+          { country: 'Bosnia and Herzegovina', Happiness_score: 5.77 },
+          { country: 'Colombia', Happiness_score: 5.78 },
+          { country: 'Belarus', Happiness_score: 5.82 },
+          { country: 'Kyrgyzstan', Happiness_score: 5.83 },
+          { country: 'Jamaica', Happiness_score: 5.85 },
+          { country: 'Moldova', Happiness_score: 5.86 },
+          { country: 'Thailand', Happiness_score: 5.89 },
+          { country: 'Phillipines', Happiness_score: 5.90 },
+          { country: 'South Korea', Happiness_score: 5.94 },
+          { country: 'Greece', Happiness_score: 5.95 },
+          { country: 'Argentina', Happiness_score: 5.97 },
+          { country: 'Portugal', Happiness_score: 6.02 },
+          { country: 'Honduras', Happiness_score: 6.02 },
+          { country: 'Japan', Happiness_score: 6.04 },
+          { country: 'Uzbekistan', Happiness_score: 6.06 },
+          { country: 'Hungary', Happiness_score: 6.09 },
+          { country: 'Kuwait', Happiness_score: 6.11 },
+          { country: 'El Salvador', Happiness_score: 6.12 },
+          { country: 'Poland', Happiness_score: 6.12 },
+          { country: 'Croatia', Happiness_score: 6.13 },
+          { country: 'Mexico', Happiness_score: 6.13 },
+          { country: 'Nicaragua', Happiness_score: 6.17 },
+          { country: 'Chile', Happiness_score: 6.17 },
+          { country: 'Serbia', Happiness_score: 6.18 },
+          { country: 'Latvia', Happiness_score: 6.18 },
+          { country: 'Cyprus', Happiness_score: 6.22 },
+          { country: 'Kazakhstan', Happiness_score: 6.23 },
+          { country: 'Guatemala', Happiness_score: 6.26 },
+          { country: 'Brazil', Happiness_score: 6.29 },
+          { country: 'Panama', Happiness_score: 6.31 },
+          { country: 'Estonia', Happiness_score: 6.34 },
+          { country: 'Slovakia', Happiness_score: 6.39 },
+          { country: 'Lithuania', Happiness_score: 6.45 },
+          { country: 'Malta', Happiness_score: 6.45 },
+          { country: 'Kosova', Happiness_score: 6.46 },
+          { country: 'Italy', Happiness_score: 6.48 },
+          { country: 'Uruguay', Happiness_score: 6.47 },
+          { country: 'Spain', Happiness_score: 6.48 },
+          { country: 'Romania', Happiness_score: 6.48 },
+          { country: 'Singapore', Happiness_score: 6.48 },
+          { country: 'Taiwan Province of China', Happiness_score: 6.51 },
+          { country: 'Saudi Arabia', Happiness_score: 6.52 },
+          { country: 'United Arab Emirates', Happiness_score: 6.58 },
+          { country: 'Costa Rica', Happiness_score: 6.58 },
+          { country: 'Slovenia', Happiness_score: 6.63 },
+          { country: 'Bahrain', Happiness_score: 6.65 },
+          { country: 'France', Happiness_score: 6.69 },
+          { country: 'Belgium', Happiness_score: 6.81 },
+          { country: 'Czechia', Happiness_score: 6.92 },
+          { country: 'United Kingdom', Happiness_score: 6.94 },
+          { country: 'United States', Happiness_score: 6.98 },
+          { country: 'Canada', Happiness_score: 7.03 },
+          { country: 'Germany', Happiness_score: 7.03 },
+          { country: 'Ireland', Happiness_score: 7.04 },
+          { country: 'Australia', Happiness_score: 7.16 },
+          { country: 'Austria', Happiness_score: 7.16 },
+          { country: 'New Zealand', Happiness_score: 7.20 },
+          { country: 'Israel', Happiness_score: 7.36 },
+          { country: 'Norway', Happiness_score: 7.37 },
+          { country: 'Sweden', Happiness_score: 7.38 },
+          { country: 'Luxembourg', Happiness_score: 7.40 },
+          { country: 'Netherlands', Happiness_score: 7.42 },
+          { country: 'Switzerland', Happiness_score: 7.51 },
+          { country: 'Iceland', Happiness_score: 7.56 },
+          { country: 'Denmark', Happiness_score: 7.64 },
+          { country: 'Finland', Happiness_score: 7.82 },
+          
+          ]
+
+          const legendData = [
+            { label: 'Low Happiness', color: 'palegoldenrod' },
+            { label: 'High Happiness', color: 'darkorange' },
+        ];
+
+        // Create an SVG element for the legend
+          const legend = d3.select('body')
+            .append('svg')
+            .attr('width', 200)
+            .attr('height', 100);
+
+        // Add rectangles and text elements to represent each item in the legend
+          const legendItemWidth = 20;
+          const legendItemHeight = 20;
+          const legendGap = 15;
+          const legendPaddingTop = 100; // Padding on the top side of the legend container
+          
+
+          const legendItems = legend.selectAll('.legend-item')
+            .data(legendData)
+            .enter()
+            .append('g')
+            .attr('class', 'legend-item')
+            .attr('transform', (d, i) => `translate(10, ${i * (legendItemHeight + legendGap)})`);
+
+          legendItems.append('rect')
+            .attr('width', legendItemWidth)
+            .attr('height', legendItemHeight)
+            .attr('fill', d => d.color);
+
+          legendItems.append('text')
+            .attr('x', legendItemWidth + 10)
+            .attr('y', legendItemHeight / 2)
+            .attr('dy', '0.35em')
+            .text(d => d.label);
+
+          // create an SVG container inside #my-svg-chart using d3.select().append()
+          const myChart = d3.select('#my-svg-chart')
+      
+            .append('svg')
+            .attr('width', 500) // set SVG width
+            .attr('height', 500) // set SVG height
+            .attr('padding-bottom', 100) // set SVG padding-bottom
+
+
+          // create SVG elements binded with data
+          const gridSize = 58; // set the size of each grid cell
+          const gap = 5; // set the gap between grid cells
+
+          // position the SVG shapes at the right places
+          const colorScale = d3.scaleLinear()
+            .domain([2.5, 7.5]) // Set the input domain (minimum and maximum Happiness_score)
+            .range(['palegoldenrod', 'darkorange']); // Set the output range of colors
+
+          myChart
+            .selectAll('rect')
+            .data(countries)
+            .join('rect')
+            .attr('x', (d, i) => Math.floor(i % 18) * (gridSize + gap))
+            .attr('y', (d, i) => Math.floor(i / 18) * (gridSize + gap))
+            .attr('width', gridSize)
+            .attr('height', gridSize)
+            .attr('padding', gridSize)
+            .style('fill', d => colorScale(d.Happiness_score));
+
+              // define the color scale based on Happiness_score
+              
+        });
+
+
+    </script>
+  </body>
+</html>
