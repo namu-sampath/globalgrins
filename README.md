@@ -10,7 +10,7 @@ For the d3 waffle chart I created, I went in knowing nothing. I had a vision in 
 
 Secondly, I would have loved to have made the graphic interactive, so that readers could click through the chart and understand the breakdown of each of the squares. If given more time, I would love to puruse that. 
 
-Additionally, I wasn't sure how to add my d3 graphic to my actual webpage, which is why it is a separate link altogether titled index.html. I understand my file naming may be the reason why the d3 is not a part of the project's webpage. 
+Additionally, I wasn't sure how to add my d3 graphic to my actual webpage, which is why it is a separate link altogether titled d3-wafflechart.html. I understand my file naming may be the reason why the d3 is not a part of the project's webpage. 
 
 ## The project 
 I gathered the data I used for this project from the [World Happiness Report](https://worldhappiness.report/), whose data is powered by the Gallup World Poll data. There are a few missing pieces from the data: a. there are a number of countries that were not included in the 2022 data, b. there are many categories through which a country's happiness score is calculated, but no explanation for how those numbers are calculated or what the categories mean for people who don't regularly work with this data. 
