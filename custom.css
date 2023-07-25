@@ -1,0 +1,40 @@
+
+/* add your custom css here */
+
+#my-svg-chart, svg {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    margin:0 auto;
+}
+
+.legend {
+    padding-top: 20px; /* Add your desired padding value (e.g., 20px) */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  /* Style the legend items */
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Add some space between the legend items */
+    font-size: 14px;
+  }
+  
+  /* Add a colored square to represent each category in the legend */
+  .legend-color {
+    width: 12px;
+    height: 12px;
+    margin-right: 5px; /* Add some space between the color square and the label */
+  }
+
+
+
+
